@@ -30,7 +30,7 @@ from functools import partial
 from torch import multiprocessing as mp
 from torch.testing import make_tensor
 from torch.testing._internal.common_optimizers import (
-    optim_db, optims, OptimizerErrorEnum, _get_optim_inputs_including_global_cliquey_kwargs, TensorTracker)
+    optim_db, optims)
 
 from torch.testing._internal.common_utils import (  # type: ignore[attr-defined]
     TEST_WITH_TORCHINDUCTOR, TEST_WITH_ROCM, run_tests, IS_JETSON,
@@ -5946,7 +5946,7 @@ else:
                 {"foreach": False, "fused": False},
                 {"foreach": True, "fused": False},
                 {"foreach": False, "fused": True},
-        ):  
+        ):
             if device.type != "cuda":
                 optimizer_kwargs['fused'] = False
             with self.subTest(optimizer=optimizer_ctor, optimizer_kwargs=optimizer_kwargs):
